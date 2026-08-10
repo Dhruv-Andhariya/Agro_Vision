@@ -34,6 +34,13 @@ export const predictDisease = async (req, res) => {
       fs.unlinkSync(req.file.path);
     }
 
+    if (error.status && error.data) {
+      return res.status(error.status).json({
+        success: false,
+        message: error.data.message || error.data.treatment || "Prediction failed",
+      });
+    }
+
     return res.status(500).json({
       success: false,
       message: "Prediction failed",

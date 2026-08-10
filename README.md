@@ -121,3 +121,4 @@ The Python AI service lives in `server/ai-service`. Run it separately if needed 
 ## License
 
 No license has been added yet.
+ uvicorn app:app --host 127.0.0.1 --port 8000

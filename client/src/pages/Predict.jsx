@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import MainLayout from "../components/layout/MainLayout";
 import ImageUpload from "../components/predict/ImageUpload";
 import PredictionResult from "../components/predict/PredictionResult";
@@ -9,7 +10,10 @@ const Predict = () => {
   const [result, setResult] = useState(null);
 
   const handlePredict = async () => {
-    if (!image) return;
+    if (!image) {
+      toast.error("Please upload a plant image before predicting.");
+      return;
+    }
 
     const formData = new FormData();
     formData.append("image", image);
@@ -17,13 +21,22 @@ const Predict = () => {
     try {
       const data = await predictDisease(formData);
 
-setResult({
-  disease: data.prediction.predictedClass,
-  confidence: data.prediction.confidence,
-  treatment: data.prediction.treatment,
-});
+      setResult({
+        disease: data.prediction.predictedClass,
+        confidence: data.prediction.confidence,
+        treatment: data.prediction.treatment,
+      });
     } catch (error) {
       console.error(error);
+      setResult(null);
+
+      const message =
+        error.response?.data?.message ||
+        error.response?.data?.treatment ||
+        error.message ||
+        "Prediction failed. Please upload a clear plant image.";
+
+      toast.error(message);
     }
   };
 

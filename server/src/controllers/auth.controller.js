@@ -151,7 +151,7 @@ const queueEmail = (payload) => {
 };
 
 const sendWelcomeEmail = (user) => {
-  const subject = "Welcome to AgroVision 🌱";
+  const subject = "Welcome to AgroVision";
   const text = `Hi ${user.name},\n\nYour account has been created successfully.\n\nYou can now detect crop diseases using AI.`;
 
   queueEmail({
@@ -160,7 +160,7 @@ const sendWelcomeEmail = (user) => {
     text,
     html: `
       <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111827;">
-        <h2 style="margin-bottom: 16px;">Welcome to AgroVision 🌱</h2>
+        <h2 style="margin-bottom: 16px;">Welcome to AgroVision</h2>
         <p>Hi ${user.name},</p>
         <p>Your account has been created successfully.</p>
         <p>You can now detect crop diseases using AI.</p>
@@ -168,7 +168,24 @@ const sendWelcomeEmail = (user) => {
     `,
   });
 };
+// const sendWelcomeEmail = (user) => {
+//   const subject = "Welcome to AgroVisoon";
+//     const text = `Hi ${user.name},\n\nYour account has been created successfully.\n\nYou can now detect crop diseases using AI.`;
 
+//   queueEmail({
+//     to: user.email,
+//     subject,
+//     text,
+//     html: `
+//       <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111827;">
+//         <h2 style="margin-bottom: 16px;">Welcome to AgroVision</h2>
+//         <p>Hi ${user.name},</p>
+//         <p>Your account has been created successfully.</p>
+//         <p>You can now detect crop diseases using AI.</p>
+//       </div>
+//     `,
+//   });
+// };
 const sendNewLoginAlert = (user, context) => {
   const subject = "New Login Detected";
   const text = `New Login Detected\n\nHi ${user.name},\n\nYour AgroVision account was accessed successfully.\n\nTime: ${new Date().toLocaleString()}\nDevice: ${context.device}\nIP: ${context.ip || "Unknown"}\nLocation: ${formatLocation(context.location)}\n\nIf this wasn't you, please change your password immediately.`;
