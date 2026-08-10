@@ -2,7 +2,7 @@ import heroImage from "../../assets/images/hero.png";
 import { motion } from "framer-motion";
 import { ArrowRight, Leaf, ShieldCheck, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Button } from "../ui/button";
+import { Button } from "../ui/Button";
 import { useAuth } from "../../context/AuthContext";
 
 
