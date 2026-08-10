@@ -1,7 +1,7 @@
 from pathlib import Path
 from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import JSONResponse
-import tensorflow as tf
+import keras
 import numpy as np
 import cv2
 
@@ -13,7 +13,7 @@ MODEL_PATH = BASE_DIR / "model" / "agroguard_model.keras"
 app = FastAPI()
 
 print(f"Loading AgroVision AI Model from {MODEL_PATH}...")
-model = tf.keras.models.load_model(str(MODEL_PATH))
+model = keras.models.load_model(str(MODEL_PATH))
 print("✅ Model Loaded Successfully")
 
 
