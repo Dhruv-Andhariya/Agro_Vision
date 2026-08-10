@@ -18,8 +18,9 @@ export const getPrediction = async (imagePath) => {
   });
 
   try {
+    const aiServiceUrl = (process.env.AI_SERVICE_URL || "http://127.0.0.1:8000").replace(/\/predict\/?$/, "");
     const response = await axios.post(
-      "http://127.0.0.1:8000/predict",
+      `${aiServiceUrl}/predict`,
       formData,
       {
         headers: formData.getHeaders(),
